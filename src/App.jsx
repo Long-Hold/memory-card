@@ -1,7 +1,12 @@
 import './App.css'
+import { GamePage } from './components/game/GamePage'
 
 function App() {
-  return <></>
+  return (
+    <>
+      <GamePage />
+    </>
+  )
 }
 
 export default App
