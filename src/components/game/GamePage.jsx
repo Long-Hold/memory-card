@@ -12,11 +12,22 @@ export function GamePage() {
   const handleCardSelection = async (cardStyle) => {
     const cards = await fetchDeck(cardStyle);
     const images = await fetchStandardCardImages(cards.deck_id);
-    console.log(images);
 
     if (cards && images) {
-      setDeck(cards);
-      setImgs(images);
+      setDeck({
+        id: cards.deck_id,
+        remaining: cards.remaining,
+      });
+
+      // Makes the array flat
+      const cleanedCards = images.cards.map((card) => {
+        const {images, ...rest} = card;
+        return {
+          ...rest,
+          image: images.png,
+        }
+      })
+      setImgs([...cleanedCards]);
       setLoading(false);
     }
   }
@@ -38,11 +49,13 @@ export function GamePage() {
   return (
     <div>
       <h1>Cards</h1>
-      <p>Deck: {deck?.deck_id}</p>
+      <p>Deck: {deck?.id}</p>
       <p>Cards: {deck?.remaining}</p>
-
-      {cardImgs.cards.map(card => 
-        <img key={card.code} src={card.image}></img>
+      {cardImgs.map(card => 
+        <img 
+          key={card.code} 
+          src={card.image}
+        ></img>
       )}
     </div>
   )
