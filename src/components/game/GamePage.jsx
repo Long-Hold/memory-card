@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { fetchCardImages } from "./util/fetchCardImages";
+import { useState } from "react";
+import { fetchStandardCardImages } from "./util/fetchCardImages";
 import { fetchDeck } from "../../util/fetchDeck";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
@@ -9,23 +9,31 @@ export function GamePage() {
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchCards = async () => {
-      const cards = await fetchDeck(playingCardsApi)
-      const images = await fetchCardImages(cards.deck_id);
-      setImgs(images);
+  const handleCardSelection = async (cardStyle) => {
+    const cards = await fetchDeck(cardStyle);
+    const images = await fetchStandardCardImages(cards.deck_id);
+    console.log(images);
 
-      if (cards && images) {
-        setDeck(cards);
-        setImgs(images);
-        setLoading(false);
-      }
+    if (cards && images) {
+      setDeck(cards);
+      setImgs(images);
+      setLoading(false);
     }
-    fetchCards();
-  }, []);
+  }
 
   if (loading)
-    return <p>Loading deck...</p>
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={() => handleCardSelection(playingCardsApi)}
+        >
+          Load Standard Cards
+        </button>
+
+        <p>Loading deck...</p>
+      </div>
+  )
 
   return (
     <div>
