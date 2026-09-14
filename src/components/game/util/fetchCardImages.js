@@ -1,4 +1,4 @@
-export async function fetchCardImages(deckId) {
+export async function fetchStandardCardImages(deckId) {
   try {
     const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`);
     if (!response.ok) {
