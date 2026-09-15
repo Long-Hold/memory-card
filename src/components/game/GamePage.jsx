@@ -10,7 +10,8 @@ export function GamePage() {
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const handleCardSelection = async (cardStyle) => {
+  // Fetches cards from API and causes a re-render to display them
+  const initializeCards = async (cardStyle) => {
     const cards = await fetchDeck(cardStyle);
     const images = await fetchStandardCardImages(cards.deck_id);
 
@@ -38,7 +39,7 @@ export function GamePage() {
       <div>
         <button
           type="button"
-          onClick={() => handleCardSelection(playingCardsApi)}
+          onClick={() => initializeCards(playingCardsApi)}
         >
           Load Standard Cards
         </button>
