@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchStandardCardImages } from "./util/fetchCardImages";
 import { fetchDeck } from "../../util/fetchDeck";
+import { Card } from "./components/Card";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
@@ -51,12 +52,20 @@ export function GamePage() {
       <h1>Cards</h1>
       <p>Deck: {deck?.id}</p>
       <p>Cards: {deck?.remaining}</p>
-      {cardImgs.map(card => 
-        <img 
-          key={card.code} 
-          src={card.image}
-        ></img>
-      )}
+      {console.log(cardImgs)}
+      <ul>
+        {cardImgs.map((card, index) =>
+          <li key={card.code}> 
+            <Card 
+              cardId={card.code}
+              index={index}
+              imageSrc={card.image}
+              suit={card.suit}
+              value={card.value}
+            />
+          </li>
+        )}
+      </ul>
     </div>
   )
 }
