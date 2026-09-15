@@ -2,6 +2,7 @@ import { useState } from "react";
 import { fetchStandardCardImages } from "./util/fetchCardImages";
 import { fetchDeck } from "../../util/fetchDeck";
 import { Card } from "./components/Card";
+import { GameState } from "./components/GameState";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
@@ -54,6 +55,9 @@ export function GamePage() {
       <p>Deck: {deck?.id}</p>
       <p>Cards: {deck?.remaining}</p>
       {console.log(cardImgs)}
+      <div>
+        <GameState />
+      </div>
       <ul>
         {cardImgs.map((card, index) =>
           <li key={card.code}> 
