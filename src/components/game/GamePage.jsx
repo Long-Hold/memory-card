@@ -3,6 +3,7 @@ import { fetchStandardCardImages } from "./util/fetchCardImages";
 import { fetchDeck } from "../../util/fetchDeck";
 import { Card } from "./components/Card";
 import { GameState } from "./components/GameState";
+import { cardsMatch } from "./util/cardsMatch";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
@@ -10,6 +11,10 @@ export function GamePage() {
   const [deck, setDeck] = useState(null);
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [winSteak, setWinStreak] = useState(0);
+  const [remainingTurns, setRemainingTurns] = useState(15);
+  const [previousCard, setPreviousCard] = useState({id: null, suit: null, value: null});
 
   // Fetches cards from API and causes a re-render to display them
   const initializeCards = async (cardStyle) => {
@@ -35,6 +40,29 @@ export function GamePage() {
     }
   }
 
+  const handleCardClick = (cardId, cardSuit, cardValue) => {
+    const currentCard = {id: cardId, suit: cardSuit, value: cardValue};
+
+    if (previousCard.id === null) {
+      setPreviousCard(currentCard);
+      return;
+    }
+
+    if (cardId === previousCard.id)
+      return;
+
+    if (cardsMatch(previousCard, currentCard)) {
+      console.log('Match!');
+      setPreviousCard({id: null, suit: null, value: null});
+      return;
+    } else {
+      console.log('Not a match!');
+      setPreviousCard({id: null, suit: null, value: null})
+      setRemainingTurns(prev => prev - 1);
+      return;
+    }
+  }
+
   if (loading)
     return (
       <div>
@@ -54,9 +82,11 @@ export function GamePage() {
       <h1>Cards</h1>
       <p>Deck: {deck?.id}</p>
       <p>Cards: {deck?.remaining}</p>
-      {console.log(cardImgs)}
       <div>
-        <GameState />
+        <GameState 
+          winStreak={winSteak}
+          remainingGuesses={remainingTurns}
+        />
       </div>
       <ul>
         {cardImgs.map((card, index) =>
@@ -67,6 +97,7 @@ export function GamePage() {
               imageSrc={card.image}
               suit={card.suit}
               value={card.value}
+              recordClick={handleCardClick}
             />
           </li>
         )}
