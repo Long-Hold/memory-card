@@ -4,11 +4,8 @@ export function Card({cardId, index, imageSrc, suit, value, recordClick}) {
   const [isFlipped, setFlippedState] = useState(false);
 
   const handleClick = () => {
-    // Prevents clicking an already flipped card
-    // if (isFlipped) return;
-
     setFlippedState(true);
-    recordClick(cardId, suit, value);
+    recordClick();
   }
 
   return (

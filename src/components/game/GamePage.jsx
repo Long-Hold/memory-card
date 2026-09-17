@@ -14,7 +14,7 @@ export function GamePage() {
 
   const [winSteak, setWinStreak] = useState(0);
   const [remainingTurns, setRemainingTurns] = useState(15);
-  const [previousCard, setPreviousCard] = useState({id: null, suit: null, value: null});
+  const [previousCard, setPreviousCard] = useState(null);
 
   // Fetches cards from API and causes a re-render to display them
   const initializeCards = async (cardStyle) => {
@@ -40,24 +40,21 @@ export function GamePage() {
     }
   }
 
-  const handleCardClick = (cardId, cardSuit, cardValue) => {
-    const currentCard = {id: cardId, suit: cardSuit, value: cardValue};
-
-    if (previousCard.id === null) {
-      setPreviousCard(currentCard);
+  const handleCardClick = (clickedCard) => {
+    if (!previousCard) {
+      setPreviousCard(clickedCard);
       return;
     }
 
-    if (cardId === previousCard.id)
-      return;
+    if (clickedCard.id === previousCard.id) return;
 
-    if (cardsMatch(previousCard, currentCard)) {
+    if (cardsMatch(previousCard, clickedCard)) {
       console.log('Match!');
-      setPreviousCard({id: null, suit: null, value: null});
+      setPreviousCard(null);
       return;
     } else {
       console.log('Not a match!');
-      setPreviousCard({id: null, suit: null, value: null})
+      setPreviousCard(null);
       setRemainingTurns(prev => prev - 1);
       return;
     }
@@ -97,7 +94,9 @@ export function GamePage() {
               imageSrc={card.image}
               suit={card.suit}
               value={card.value}
-              recordClick={handleCardClick}
+              recordClick={() => 
+                handleCardClick({id: card.code, suit: card.suit, value: card.value})
+              }
             />
           </li>
         )}
