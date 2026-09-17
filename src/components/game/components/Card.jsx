@@ -1,13 +1,4 @@
-import { useState } from "react";
-
-export function Card({cardId, index, imageSrc, suit, value, recordClick}) {
-  const [isFlipped, setFlippedState] = useState(false);
-
-  const handleClick = () => {
-    setFlippedState(true);
-    recordClick();
-  }
-
+export function Card({cardId, index, imageSrc, suit, value, isFlipped, recordClick}) {
   return (
     <button
       className={`card${isFlipped ? " flipped" : ""}`}
@@ -16,7 +7,7 @@ export function Card({cardId, index, imageSrc, suit, value, recordClick}) {
       data-suit={suit}
       data-value={value}
       aria-label={isFlipped ? `Card #${index + 1}` : `${value} of ${suit}`}
-      onClick={handleClick}
+      onClick={recordClick}
     >
       <img src={imageSrc} alt=""></img>
     </button>
