@@ -16,6 +16,9 @@ export function GamePage() {
   const [stats, setStats] = useState({winStreak: 0, remainingTurns: 15});
   const [previousCard, setPreviousCard] = useState(null);
 
+  // Tracks matched cards that have been removed from the board
+  const [matchedCardIds, setMatchedCardIds] = useState(new Set());
+
   // Fetches cards from API and causes a re-render to display them
   const initializeCards = async (cardStyle) => {
     const cards = await fetchDeck(cardStyle);
@@ -41,6 +44,9 @@ export function GamePage() {
   }
 
   const handleCardClick = (clickedCard) => {
+    // Prevents 'won' cards being played at all
+    if (matchedCardIds.has(clickedCard.id)) return;
+
     if (!previousCard) {
       setPreviousCard(clickedCard);
       return;
@@ -50,9 +56,19 @@ export function GamePage() {
 
     if (cardsMatch(previousCard, clickedCard)) {
       console.log('Match!');
+
+      setMatchedCardIds(prev => {
+        const next = new Set(prev);
+        next.add(previousCard.id).add(clickedCard.id);
+        return next;
+      });
+
       setPreviousCard(null);
+
       return;
-    } else {
+    } 
+    
+    else {
       console.log('Not a match!');
       setPreviousCard(null);
       setStats(prev => ({...prev, remainingTurns: prev.remainingTurns - 1}));
@@ -86,20 +102,25 @@ export function GamePage() {
         />
       </div>
       <ul className="cards-area">
-        {cardImgs.map((card, index) =>
-          <li key={card.code}> 
-            <Card 
-              cardId={card.code}
-              index={index}
-              imageSrc={card.image}
-              suit={card.suit}
-              value={card.value}
-              recordClick={() => 
-                handleCardClick({id: card.code, suit: card.suit, value: card.value})
-              }
-            />
-          </li>
-        )}
+        {cardImgs.map((card, index) => {
+          const isFlipped = previousCard?.id === card.code || matchedCardIds.has(card.code);
+
+          return (
+            <li key={card.code}> 
+              <Card 
+                cardId={card.code}
+                index={index}
+                imageSrc={card.image}
+                suit={card.suit}
+                value={card.value}
+                isFlipped={isFlipped}
+                recordClick={() => 
+                  handleCardClick({id: card.code, suit: card.suit, value: card.value})
+                }
+              />
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
