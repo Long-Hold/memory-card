@@ -76,7 +76,7 @@ export function GamePage() {
     }
   }
 
-  if (loading)
+  if (loading) {
     return (
       <div>
         <button
@@ -88,7 +88,8 @@ export function GamePage() {
 
         <p>Loading deck...</p>
       </div>
-  )
+    )
+  }
 
   return (
     <div>
