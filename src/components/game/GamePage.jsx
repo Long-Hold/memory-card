@@ -4,6 +4,7 @@ import { fetchDeck } from "../../util/fetchDeck";
 import { Card } from "./components/Card";
 import { GameState } from "./components/GameState";
 import { cardsMatch } from "./util/cardsMatch";
+import { GameOver } from "./components/GameOver";
 import "./styles/gamePage.css";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
@@ -76,6 +77,17 @@ export function GamePage() {
     }
   }
 
+  const restartGame = () => {
+    setStats(prev => ({
+      ...prev,
+      winStreak: prev.remainingTurns <= 0 ? 0 : prev.winStreak + 1,
+      remainingTurns: 15,
+    }));
+
+    setMatchedCardIds(new Set());
+    setPreviousCard(null);
+  }
+
   if (loading) {
     return (
       <div>
@@ -88,6 +100,19 @@ export function GamePage() {
 
         <p>Loading deck...</p>
       </div>
+    )
+  }
+
+  // cardImg's relies on an async API call, so it could read 0 at this point which would cause
+  // an instance win.
+  const hasWon = (cardImgs.length > 0 && matchedCardIds.size === cardImgs?.length);
+  const isOutOfTurns = stats.remainingTurns <= 0;
+  if (hasWon || isOutOfTurns) {
+    return (
+      <GameOver
+        hasWon={hasWon}
+        restartGame={restartGame}
+      />
     )
   }
 
