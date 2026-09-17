@@ -6,6 +6,7 @@ import { GameState } from "./components/GameState";
 import { cardsMatch } from "./util/cardsMatch";
 import { GameOver } from "./components/GameOver";
 import "./styles/gamePage.css";
+import { shuffleArray } from "./util/shuffleArray";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
@@ -38,8 +39,10 @@ export function GamePage() {
           ...rest,
           image: images.png,
         }
-      })
-      setImgs([...cleanedCards]);
+      });
+
+      const shuffledCards = shuffleArray(cleanedCards);
+      setImgs([...shuffledCards]);
       setLoading(false);
     }
   }
@@ -78,6 +81,7 @@ export function GamePage() {
   }
 
   const restartGame = () => {
+    setImgs(prev => [...shuffleArray(prev)]);
     setStats(prev => ({
       ...prev,
       winStreak: prev.remainingTurns <= 0 ? 0 : prev.winStreak + 1,
