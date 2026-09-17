@@ -1,0 +1,16 @@
+/* TEMP STYLING FOR TESTING */
+.cards-area {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  li img {
+    height: 150px;
+  }
+}
