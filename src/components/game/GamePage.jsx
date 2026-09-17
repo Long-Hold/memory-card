@@ -12,8 +12,7 @@ export function GamePage() {
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [winSteak, setWinStreak] = useState(0);
-  const [remainingTurns, setRemainingTurns] = useState(15);
+  const [stats, setStats] = useState({winStreak: 0, remainingTurns: 15});
   const [previousCard, setPreviousCard] = useState(null);
 
   // Fetches cards from API and causes a re-render to display them
@@ -55,7 +54,7 @@ export function GamePage() {
     } else {
       console.log('Not a match!');
       setPreviousCard(null);
-      setRemainingTurns(prev => prev - 1);
+      setStats(prev => ({...prev, remainingTurns: prev.remainingTurns - 1}));
       return;
     }
   }
@@ -81,8 +80,8 @@ export function GamePage() {
       <p>Cards: {deck?.remaining}</p>
       <div>
         <GameState 
-          winStreak={winSteak}
-          remainingGuesses={remainingTurns}
+          winStreak={stats.winStreak}
+          remainingGuesses={stats.remainingTurns}
         />
       </div>
       <ul>
