@@ -4,6 +4,7 @@ import { fetchDeck } from "../../util/fetchDeck";
 import { Card } from "./components/Card";
 import { GameState } from "./components/GameState";
 import { cardsMatch } from "./util/cardsMatch";
+import "./styles/gamePage.css";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
@@ -84,7 +85,7 @@ export function GamePage() {
           remainingGuesses={stats.remainingTurns}
         />
       </div>
-      <ul>
+      <ul className="cards-area">
         {cardImgs.map((card, index) =>
           <li key={card.code}> 
             <Card 
