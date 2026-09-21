@@ -10,12 +10,12 @@ import { shuffleArray } from "./util/shuffleArray";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 
-export function GamePage() {
+export function GamePage({difficulty}) {
   const [deck, setDeck] = useState(null);
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [stats, setStats] = useState({winStreak: 0, remainingTurns: 15});
+  const [stats, setStats] = useState({winStreak: 0, remainingTurns: difficulty});
   const [previousCard, setPreviousCard] = useState(null);
 
   // Tracks matched cards that have been removed from the board
@@ -85,7 +85,7 @@ export function GamePage() {
     setStats(prev => ({
       ...prev,
       winStreak: prev.remainingTurns <= 0 ? 0 : prev.winStreak + 1,
-      remainingTurns: 15,
+      remainingTurns: difficulty,
     }));
 
     setMatchedCardIds(new Set());
