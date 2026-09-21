@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Sidebar
-        defaultGuesses={DIFFICULTIES.standard} 
+        defaultGuesses={difficulty} 
         setStandardDiff={() => setDifficulty(DIFFICULTIES.standard)}
         setModerateDiff={() => setDifficulty(DIFFICULTIES.moderate)}
         setExtremeDiff={() => setDifficulty(DIFFICULTIES.extreme)}
