@@ -1,4 +1,4 @@
-export function Sidebar({setStandardDiff, setModerateDiff, setExtremeDiff}) {
+export function Sidebar({defaultGuesses, setStandardDiff, setModerateDiff, setExtremeDiff}) {
   return (
     <aside className="sidebar">
       <section className="game-rules">
@@ -15,7 +15,7 @@ export function Sidebar({setStandardDiff, setModerateDiff, setExtremeDiff}) {
 
       <section className="difficulty-selector">
         <h3>Choose your difficulty:</h3>
-        <p>Default: Unlimited Guesses</p>
+        <p>Default: {defaultGuesses} Guesses</p>
         <ul>
           <li>
             <button type="button" className="difficulty-button" onClick={setStandardDiff}>30 Guesses</button>
