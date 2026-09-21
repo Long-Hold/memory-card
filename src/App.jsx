@@ -20,10 +20,12 @@ function App() {
         setModerateDiff={() => setDifficulty(DIFFICULTIES.moderate)}
         setExtremeDiff={() => setDifficulty(DIFFICULTIES.extreme)}
       />
-      <GamePage 
-        key={difficulty} // triggers a render if the user changes difficulty
-        difficulty={difficulty}
-      />
+      <main>
+        <GamePage 
+          key={difficulty} // triggers a render if the user changes difficulty
+          difficulty={difficulty}
+        />
+      </main>
     </>
   )
 }
