@@ -9,6 +9,7 @@ import "./styles/gamePage.css";
 import { shuffleArray } from "./util/shuffleArray";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
+const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
 
 export function GamePage({difficulty}) {
   const [deck, setDeck] = useState(null);
@@ -16,7 +17,8 @@ export function GamePage({difficulty}) {
   const [loading, setLoading] = useState(true);
 
   const [stats, setStats] = useState({winStreak: 0, remainingTurns: difficulty});
-  const [previousCard, setPreviousCard] = useState(null);
+
+  const [currentPair, setCurrentPair] = useState([]);
 
   // Tracks matched cards that have been removed from the board
   const [matchedCardIds, setMatchedCardIds] = useState(new Set());
@@ -51,33 +53,34 @@ export function GamePage({difficulty}) {
     // Prevents 'won' cards being played at all
     if (matchedCardIds.has(clickedCard.id)) return;
 
-    if (!previousCard) {
-      setPreviousCard(clickedCard);
+    if (currentPair.some(card => card.id === clickedCard.id)) return;
+
+    /**
+     * The current pair get compared when the user picks a third card
+     */
+    if (currentPair.length === 2) {
+      const [firstCard, secondCard] = currentPair;
+
+      if (cardsMatch(firstCard, secondCard)) {
+        console.log('Match!');
+
+        setMatchedCardIds(prev => {
+          const next = new Set(prev);
+          next.add(firstCard.id).add(secondCard.id);
+          return next;
+        });
+      }
+
+      else {
+        console.log('Not a Match!');
+        setStats(prev => ({...prev, remainingTurns: prev.remainingTurns - 1}));
+      }
+
+      setCurrentPair([clickedCard]);
       return;
     }
 
-    if (clickedCard.id === previousCard.id) return;
-
-    if (cardsMatch(previousCard, clickedCard)) {
-      console.log('Match!');
-
-      setMatchedCardIds(prev => {
-        const next = new Set(prev);
-        next.add(previousCard.id).add(clickedCard.id);
-        return next;
-      });
-
-      setPreviousCard(null);
-
-      return;
-    } 
-    
-    else {
-      console.log('Not a match!');
-      setPreviousCard(null);
-      setStats(prev => ({...prev, remainingTurns: prev.remainingTurns - 1}));
-      return;
-    }
+    setCurrentPair(prev => [...prev, clickedCard]);
   }
 
   const restartGame = () => {
@@ -89,7 +92,7 @@ export function GamePage({difficulty}) {
     }));
 
     setMatchedCardIds(new Set());
-    setPreviousCard(null);
+    setCurrentPair([]);
   }
 
   if (loading) {
@@ -133,14 +136,14 @@ export function GamePage({difficulty}) {
       </div>
       <ul className="cards-area">
         {cardImgs.map((card, index) => {
-          const isFlipped = previousCard?.id === card.code || matchedCardIds.has(card.code);
+          const isFlipped = matchedCardIds.has(card.code) || currentPair.some(guessedCard => guessedCard.id === card.code);
 
           return (
             <li key={card.code}> 
               <Card 
                 cardId={card.code}
                 index={index}
-                imageSrc={card.image}
+                imageSrc={isFlipped ? card.image : cardBackImg}
                 suit={card.suit}
                 value={card.value}
                 isFlipped={isFlipped}
