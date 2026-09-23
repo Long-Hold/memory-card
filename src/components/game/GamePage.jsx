@@ -7,6 +7,8 @@ import { cardsMatch } from "./util/cardsMatch";
 import { GameOver } from "./components/GameOver";
 import "./styles/gamePage.css";
 import { shuffleArray } from "./util/shuffleArray";
+import { useMemo } from "react";
+import { useEffect } from "react";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
@@ -56,30 +58,42 @@ export function GamePage({difficulty}) {
     if (currentPair.some(card => card.id === clickedCard.id)) return;
 
     /**
-     * The current pair get compared when the user picks a third card
+     * If the currentPair array has two cards and this function has been called,
+     * it means the user is beginning their selection of a new pair of cards during this call,
+     * so we discard the previous two cards and record the clickedCard of the new pair selection.
      */
     if (currentPair.length === 2) {
-      const [firstCard, secondCard] = currentPair;
+      setCurrentPair([clickedCard]);
+      return;
+    }
 
-      if (cardsMatch(firstCard, secondCard)) {
-        console.log('Match!');
+    /**
+     * If the currentPair array already has 1 card in it, then we can immediately compare the clickedCard
+     * against the currentPair card to see if they are a match or not.
+     */
+    if (currentPair.length === 1) {
+      const firstCard = currentPair[0];
+      if (cardsMatch(firstCard, clickedCard)) {
+        console.log("Match!");
 
         setMatchedCardIds(prev => {
           const next = new Set(prev);
-          next.add(firstCard.id).add(secondCard.id);
+          next.add(firstCard.id).add(clickedCard.id);
           return next;
         });
       }
 
       else {
-        console.log('Not a Match!');
-        setStats(prev => ({...prev, remainingTurns: prev.remainingTurns - 1}));
+        console.log("Not match!");
+        setStats(prev => ({ ...prev, remainingTurns: prev.remainingTurns - 1 }));
       }
-
-      setCurrentPair([clickedCard]);
-      return;
     }
 
+    /**
+     * Even if the two cards were compared in the conditional above, a new turn for 
+     * two new cards has not yet begin so these cards can be considered the
+     * "currently selected pair".
+     */
     setCurrentPair(prev => [...prev, clickedCard]);
   }
 
