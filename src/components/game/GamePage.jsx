@@ -9,6 +9,7 @@ import "./styles/gamePage.css";
 import { shuffleArray } from "./util/shuffleArray";
 import { useMemo } from "react";
 import { useEffect } from "react";
+import { StartScreen } from "./components/StartScreen";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
 const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
@@ -111,16 +112,7 @@ export function GamePage({difficulty}) {
 
   if (loading) {
     return (
-      <div>
-        <button
-          type="button"
-          onClick={() => initializeCards(playingCardsApi)}
-        >
-          Load Standard Cards
-        </button>
-
-        <p>Loading deck...</p>
-      </div>
+      <StartScreen loadCards={() => initializeCards(playingCardsApi)}/>
     )
   }
 
