@@ -131,15 +131,10 @@ export function GamePage({difficulty}) {
 
   return (
     <div>
-      <h1>Cards</h1>
-      <p>Deck: {deck?.id}</p>
-      <p>Cards: {deck?.remaining}</p>
-      <div>
-        <GameState 
-          winStreak={stats.winStreak}
-          remainingGuesses={stats.remainingTurns}
-        />
-      </div>
+      <GameState 
+        winStreak={stats.winStreak}
+        remainingGuesses={stats.remainingTurns}
+      />
       <ul className="cards-area">
         {cardImgs.map((card, index) => {
           const isFlipped = matchedCardIds.has(card.code) || currentPair.some(guessedCard => guessedCard.id === card.code);
