@@ -1,3 +1,4 @@
+import './reset.css';
 import { useState } from 'react'
 import { GamePage } from './components/game/GamePage'
 import { Sidebar } from './components/sidebar/Sidebar'
