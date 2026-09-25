@@ -2,6 +2,10 @@
   --very-dark-gray: #242424;
 }
 
+html {
+  color: white;
+}
+
 body {
   background-color: var(--very-dark-gray);
 }
