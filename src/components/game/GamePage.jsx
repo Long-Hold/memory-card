@@ -7,8 +7,6 @@ import { cardsMatch } from "./util/cardsMatch";
 import { GameOver } from "./components/GameOver";
 import "./styles/gamePage.css";
 import { shuffleArray } from "./util/shuffleArray";
-import { useMemo } from "react";
-import { useEffect } from "react";
 import { StartScreen } from "./components/StartScreen";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new//?deck_count=1";
