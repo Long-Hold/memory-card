@@ -15,6 +15,9 @@ function App() {
 
   return (
     <>
+      <header className='website-header'>
+        <h1>Concentration</h1>
+      </header>
       <Sidebar
         defaultGuesses={difficulty} 
         setStandardDiff={() => setDifficulty(DIFFICULTIES.standard)}
