@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { useRef } from "react"
+import { useEffect, useRef} from "react";
 
 export function StartScreen({loadCards}) {
   const buttonRef = useRef(null);
