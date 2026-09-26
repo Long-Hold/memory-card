@@ -1,6 +1,8 @@
-export function Sidebar({defaultGuesses, setStandardDiff, setModerateDiff, setExtremeDiff}) {
+import { DIFFICULTIES } from "../../constants/difficulties"
+
+export function Sidebar({currentDifficulty, setDifficulty}) {
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" aria-label="Game settings">
       <section className="game-rules">
         <details>
           <summary>Game Rules</summary>
@@ -15,19 +17,30 @@ export function Sidebar({defaultGuesses, setStandardDiff, setModerateDiff, setEx
 
       <section className="difficulty-selector">
         <h3>Choose your difficulty:</h3>
-        <p>Current Choice: {defaultGuesses} Guesses</p>
+        <p>Current Choice: {currentDifficulty} Guesses</p>
         <ul>
-          <li>
-            <button type="button" className="difficulty-button" onClick={setStandardDiff}>30 Guesses</button>
-          </li>
-          <li>
-            <button type="button" className="difficulty-button" onClick={setModerateDiff}>15 Guesses</button>
-          </li>
-          <li>
-            <button type="button" className="difficulty-button" onClick={setExtremeDiff}>5 Guesses</button>
-          </li>
+          {Object.values(DIFFICULTIES).map((guesses) => (
+            <li key={guesses}>
+              <DifficultyButton 
+                onClick={() => setDifficulty(guesses)}
+                currentDifficulty={currentDifficulty}
+                difficultyToSet={guesses}
+              />
+            </li>
+          ))}
         </ul>
       </section>
     </aside>
+  )
+}
+
+function DifficultyButton({onClick, currentDifficulty, difficultyToSet}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={currentDifficulty === difficultyToSet}
+      className="difficulty-button"
+    >{difficultyToSet} Guesses</button>
   )
 }

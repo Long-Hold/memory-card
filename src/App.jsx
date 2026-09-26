@@ -3,12 +3,7 @@ import { useState } from 'react'
 import { GamePage } from './components/game/GamePage'
 import { Sidebar } from './components/sidebar/Sidebar'
 import './App.css'
-
-const DIFFICULTIES = {
-  standard: 30,
-  moderate: 15,
-  extreme: 5,
-}
+import { DIFFICULTIES } from './constants/difficulties';
 
 function App() {
   const [difficulty, setDifficulty] = useState(DIFFICULTIES.standard);
@@ -19,10 +14,8 @@ function App() {
         <h1>Concentration</h1>
       </header>
       <Sidebar
-        defaultGuesses={difficulty} 
-        setStandardDiff={() => setDifficulty(DIFFICULTIES.standard)}
-        setModerateDiff={() => setDifficulty(DIFFICULTIES.moderate)}
-        setExtremeDiff={() => setDifficulty(DIFFICULTIES.extreme)}
+        currentDifficulty={difficulty} 
+        setDifficulty={setDifficulty}
       />
       <main>
         <GamePage 
