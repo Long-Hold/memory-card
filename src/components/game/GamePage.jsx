@@ -138,7 +138,7 @@ export function GamePage({difficulty}) {
           const isFlipped = matchedCardIds.has(card.code) || currentPair.some(guessedCard => guessedCard.id === card.code);
 
           return (
-            <li key={card.code}> 
+            <li key={card.code} aria-label="Concentration card grid"> 
               <Card 
                 cardId={card.code}
                 index={index}
