@@ -1,3 +1,7 @@
+.flipped {
+  outline: 4px solid rgb(17, 221, 105);
+}
+
 .card img {
   /* Temporary dimension styling */
   height: 150px; 
