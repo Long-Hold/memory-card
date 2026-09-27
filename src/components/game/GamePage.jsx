@@ -135,7 +135,8 @@ export function GamePage({difficulty}) {
       />
       <ul className="cards-area" aria-label="Memory card grid">
         {cardImgs.map((card, index) => {
-          const isFlipped = matchedCardIds.has(card.code) || currentPair.some(guessedCard => guessedCard.id === card.code);
+          const isMatched = matchedCardIds.has(card.code);
+          const isFlipped = currentPair.some(guessedCard => guessedCard.id === card.code);
 
           return (
             <li key={card.code}> 
@@ -146,6 +147,7 @@ export function GamePage({difficulty}) {
                 suit={card.suit}
                 value={card.value}
                 isFlipped={isFlipped}
+                isMatched={isMatched}
                 recordClick={() => 
                   handleCardClick({id: card.code, suit: card.suit, value: card.value})
                 }
