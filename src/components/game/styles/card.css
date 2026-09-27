@@ -3,7 +3,23 @@
   height: 150px; 
 }
 
-/* TODO: Animate the cards vanishing so it's not instant */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  99% {
+    opacity: 0.01;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .card:disabled {
-  visibility: hidden;
+  animation: fadeOut 1s forwards;
 }
