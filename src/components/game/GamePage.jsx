@@ -133,12 +133,12 @@ export function GamePage({difficulty}) {
         winStreak={stats.winStreak}
         remainingGuesses={stats.remainingTurns}
       />
-      <ul className="cards-area">
+      <ul className="cards-area" aria-label="Memory card grid">
         {cardImgs.map((card, index) => {
           const isFlipped = matchedCardIds.has(card.code) || currentPair.some(guessedCard => guessedCard.id === card.code);
 
           return (
-            <li key={card.code} aria-label="Concentration card grid"> 
+            <li key={card.code}> 
               <Card 
                 cardId={card.code}
                 index={index}
