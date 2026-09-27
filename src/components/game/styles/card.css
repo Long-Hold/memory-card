@@ -1,0 +1,9 @@
+.card img {
+  /* Temporary dimension styling */
+  height: 150px; 
+}
+
+/* TODO: Animate the cards vanishing so it's not instant */
+.card:disabled {
+  visibility: hidden;
+}
