@@ -21,11 +21,40 @@
   40%, 80% { transform: translate3d(4px, 0, 0); }
 }
 
+@keyframes flipToFace {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes flipToBack {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .card {
   cursor: pointer;
   outline: 2px solid;
   outline-offset: 2px;
   transition: filter 0.3s ease;
+
+  img {
+    /* Temp height */
+    height: 150px;
+  }
 
   &:hover {
     filter: brightness(1.2);
@@ -41,23 +70,36 @@
   
   &.mismatch {
     outline-color:  #e5484d;
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation: shake 0.2s ease-in-out;
-    }
   }
 
-  &:disabled {
-    animation: fadeOut 1s ease-out forwards;
-
-    @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
+    &:disabled {
       animation: none;
       visibility: hidden;
     }
   }
-}
 
-.card img {
-  /* Temporary dimension styling */
-  height: 150px; 
+  @media (prefers-reduced-motion: no-preference) {
+    &.mismatch, &.flipped img, &.notFlipped img {
+      animation-timing-function: ease-in-out;
+      animation-duration: 0.2s;
+      animation-fill-mode: forwards;
+    }
+    
+    &.mismatch {
+      animation-name: shake;
+    }
+
+    &.flipped img {
+      animation-name: flipToFace;
+    }
+
+    &.notFlipped img {
+      animation-name: flipToBack;
+    }
+
+    &:disabled {
+      animation: fadeOut 1s ease-out forwards;
+    }
+  }
 }
