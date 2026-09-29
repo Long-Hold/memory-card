@@ -137,7 +137,7 @@ export function GamePage({difficulty}) {
         {cardImgs.map((card, index) => {
           const isMatched = matchedCardIds.has(card.code);
           const isFlipped = currentPair.some(guessedCard => guessedCard.id === card.code);
-
+          const notAMatch = (isFlipped && !isMatched && currentPair.length === 2);
           return (
             <li key={card.code}> 
               <Card 
@@ -148,6 +148,7 @@ export function GamePage({difficulty}) {
                 value={card.value}
                 isFlipped={isFlipped}
                 isMatched={isMatched}
+                isNotAMatch={notAMatch}
                 recordClick={() => 
                   handleCardClick({id: card.code, suit: card.suit, value: card.value})
                 }

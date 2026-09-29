@@ -1,9 +1,9 @@
 import "../styles/card.css";
 
-export function Card({cardId, index, imageSrc, suit, value, isFlipped, isMatched, recordClick}) {
+export function Card({cardId, index, imageSrc, suit, value, isFlipped, isMatched, isNotAMatch, recordClick}) {
   return (
     <button
-      className={`card${isFlipped ? " flipped" : ""}`}
+      className={`card${isFlipped ? " flipped" : ""}${isNotAMatch ? " mismatch" : ""}`}
       type="button"
       data-id={cardId}
       data-suit={suit}
