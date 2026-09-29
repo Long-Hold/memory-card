@@ -1,12 +1,3 @@
-.flipped {
-  outline: 4px solid rgb(17, 221, 105);
-}
-
-.card img {
-  /* Temporary dimension styling */
-  height: 150px; 
-}
-
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -24,6 +15,49 @@
   }
 }
 
-.card:disabled {
-  animation: fadeOut 1s forwards;
+@keyframes shake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20%, 60% { transform: translate3d(-4px, 0, 0); }
+  40%, 80% { transform: translate3d(4px, 0, 0); }
+}
+
+.card {
+  cursor: pointer;
+  outline: 2px solid;
+  outline-offset: 2px;
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  &:focus-visible {
+    outline-color: white;
+  }
+
+  &.flipped {
+    outline-color: #f5c542;
+  }
+  
+  &.mismatch {
+    outline-color:  #e5484d;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: shake 0.2s ease-in-out;
+    }
+  }
+
+  &:disabled {
+    animation: fadeOut 1s ease-out forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      visibility: hidden;
+    }
+  }
+}
+
+.card img {
+  /* Temporary dimension styling */
+  height: 150px; 
 }
