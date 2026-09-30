@@ -1,0 +1,34 @@
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+/* Larger viewport sizing */
+@media screen and (min-width: 48rem) {
+  #root {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "sidebar header"
+    "sidebar main"
+    "footer footer";
+
+    .website-header {
+      grid-area: header;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+    }
+
+    main {
+      grid-area: main;
+    }
+
+    footer {
+      grid-area: footer;
+    }
+  }
+}
