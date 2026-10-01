@@ -1,0 +1,35 @@
+.sidebar, .sidebar-panel {
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  .sidebar-toggle {
+    display: none;
+    /* Keeps button clickable even when .sidebar disables pointer events */
+    pointer-events: all;
+  }
+
+  .sidebar-panel {
+    background-color: var(--menu-color);
+  }
+
+  @media screen and (max-width: 48rem) {
+    position: absolute;
+    z-index: 10;
+
+    &:has(.sidebar-panel[inert]) {
+      pointer-events: none;
+    }
+
+    .sidebar-toggle {
+      display: block;
+      position: absolute;
+      right: 0;
+    }
+
+    .sidebar-panel[inert] {
+      display: none;
+    }
+  }
+}
