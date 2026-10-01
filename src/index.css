@@ -1,5 +1,6 @@
 :root {
   --very-dark-gray: #242424;
+  --menu-color: color-mix(in srgb, var(--very-dark-gray), #fff 5%);
 }
 
 html {
