@@ -4,32 +4,53 @@
 }
 
 .sidebar {
+  /* Disables the button that toggles sidebar visibility
+  because the sidebar is always visible on larger viewports. */
   .sidebar-toggle {
     display: none;
-    /* Keeps button clickable even when .sidebar disables pointer events */
-    pointer-events: all;
   }
 
   .sidebar-panel {
     background-color: var(--menu-color);
   }
 
-  @media screen and (max-width: 48rem) {
+  @media screen and (width < 48rem) {
     position: absolute;
     z-index: 10;
-
-    &:has(.sidebar-panel[inert]) {
-      pointer-events: none;
-    }
+    /* The aside spans the viewport, so let clicks pass through it.
+    Interactive children opt back in below. */
+    pointer-events: none;
 
     .sidebar-toggle {
       display: block;
       position: absolute;
       right: 0;
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .sidebar-panel {
+      pointer-events: auto;
+      transform: translateX(0);
+      visibility: visible;
     }
 
     .sidebar-panel[inert] {
-      display: none;
+      transform: translateX(-100%);
+      visibility: hidden;
+    }
+
+    /* Motion: only the transitions are conditional */
+    @media (prefers-reduced-motion: no-preference) {
+      /* Opening: become visible instantly, then slide in */
+      .sidebar-panel {
+        transition: transform 0.2s ease-out, visibility 0s;
+      }
+
+      /* Closing: slide out first, then hide after the slide finishes */
+      .sidebar-panel[inert] {
+        transition: transform 0.2s ease-in, visibility 0s 0.2s;
+      }
     }
   }
 }
