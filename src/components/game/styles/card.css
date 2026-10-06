@@ -65,7 +65,7 @@
   }
 
   &.flipped {
-    outline-color: #f5c542;
+    outline-color: var(--selected-gold);
   }
   
   &.mismatch {
