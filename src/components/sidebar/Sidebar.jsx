@@ -18,8 +18,8 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
         Settings
       </button>
       <div id={panelId} className="sidebar-panel" inert={!isOpen}>
-        <h2>Choose your difficulty:</h2>
-        <ul>
+        <h2>Select Number of Guesses</h2>
+        <ul className="settings-list">
           {Object.values(DIFFICULTIES).map((guesses) => (
             <li key={guesses}>
               <DifficultyButton 
