@@ -1,9 +1,13 @@
+:root {
+  --sidebar-width: 15rem;
+}
+
 .sidebar, .sidebar-panel {
   height: 100%;
-  width: 100%;
 }
 
 .sidebar {
+  width: var(--sidebar-width);
   /* Disables the button that toggles sidebar visibility
   because the sidebar is always visible on larger viewports. */
   .sidebar-toggle {
@@ -11,10 +15,12 @@
   }
 
   .sidebar-panel {
+    width: 100%;
     background-color: var(--menu-color);
   }
 
-  @media screen and (width < 48rem) {
+  @media screen and (width <= 48rem) {
+    width: 100%;
     position: fixed;
     inset: 0;
     height: 100dvh;
@@ -62,7 +68,7 @@
 
 /* Intentionally global: locks page scroll while the mobile sidebar is open.
    Kept here because it depends on the panel's inert state and breakpoint. */
-@media screen and (width < 48rem) {
+@media screen and (width < 47.5rem) {
   html:has(.sidebar-panel:not([inert])) {
     overflow: hidden;
   }
