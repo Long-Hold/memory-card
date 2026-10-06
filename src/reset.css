@@ -52,3 +52,12 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+/* Custom Reset Rules */
+button {
+  padding: 0.5em 1.25em;
+  min-width: 120px;
+  max-width: 100%;
+  min-height: 44px;
+  white-space: normal;
+}
