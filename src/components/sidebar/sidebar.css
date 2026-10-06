@@ -66,6 +66,16 @@
   }
 }
 
+.difficulty-button[aria-pressed="true"] {
+  outline: 2px solid var(--selected-gold);
+  outline-offset: 2px;
+
+  &::before {
+    content: "●";
+    color: #4ade80;
+  }
+}
+
 /* Intentionally global: locks page scroll while the mobile sidebar is open.
    Kept here because it depends on the panel's inert state and breakpoint. */
 @media screen and (width < 47.5rem) {
