@@ -4,6 +4,10 @@
   --selected-gold: #f5c542;
   --container-padding: 0.5rem 1rem;
   --small-items-gap: 0.5rem;
+
+  --button-bg: color-mix(in srgb, var(--very-dark-gray), #fff 15%);
+  --button-bg-hover: color-mix(in srgb, var(--menu-color), #fff 20%);
+  --button-bg-selected: color-mix(in srgb, var(--very-dark-gray), #fff 18%);
 }
 
 html {
