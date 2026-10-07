@@ -42,6 +42,9 @@ function DifficultyButton({onClick, currentDifficulty, difficultyToSet}) {
       onClick={onClick}
       aria-pressed={currentDifficulty === difficultyToSet}
       className="difficulty-button"
-    >{difficultyToSet} Guesses</button>
+    >
+      <span className="active-indicator" aria-hidden="true">◯ </span>
+      {difficultyToSet} Guesses
+    </button>
   )
 }
