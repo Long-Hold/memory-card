@@ -18,18 +18,20 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
         Settings
       </button>
       <div id={panelId} className="sidebar-panel" inert={!isOpen}>
-        <h2>Select Number of Guesses</h2>
-        <ul className="settings-list">
-          {Object.values(DIFFICULTIES).map((guesses) => (
-            <li key={guesses}>
-              <DifficultyButton 
-                onClick={() => setDifficulty(guesses)}
-                currentDifficulty={currentDifficulty}
-                difficultyToSet={guesses}
-              />
-            </li>
+        <fieldset className="difficulty-group">
+          <legend>Number of Guesses</legend>
+          {Object.entries(DIFFICULTIES).map(([name, guesses]) => (
+            <div key={name} className="difficulty-button">
+              <label htmlFor={name}>{name} [{guesses} Guesses]</label>
+              <input 
+                id={name} 
+                type="radio"
+                name="difficulty"
+                checked={currentDifficulty === guesses}
+                onChange={() => setDifficulty(guesses)} />
+            </div>
           ))}
-        </ul>
+        </fieldset>
       </div>
     </aside>
   )
