@@ -15,16 +15,18 @@
   }
 
   .sidebar-panel {
-    padding: var(--container-padding);
-    width: 100%;
-    background-color: var(--menu-color);
-  }
-
-  .sidebar-panel {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: var(--small-items-gap);
+    padding: var(--container-padding);
+    width: 100%;
+    background-color: var(--wood-mid);
+    background-image:
+      /* two grain layers with different periods so it doesn't look mechanical */
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.08) 0 2px, transparent 2px 9px),
+      repeating-linear-gradient(90deg, rgb(255 255 255 / 0.04) 0 1px, transparent 1px 13px);
+    box-shadow: inset -3px 0 6px rgb(0 0 0 / 0.4), 4px 0 14px rgb(0 0 0 / 0.5);
   }
 
   .settings-list {
