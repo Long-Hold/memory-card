@@ -61,3 +61,11 @@ button {
   min-height: 44px;
   white-space: normal;
 }
+
+fieldset,
+legend,
+label,
+input {
+  padding: 0;
+  margin: 0;
+}
