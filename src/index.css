@@ -8,6 +8,10 @@
   --button-bg: color-mix(in srgb, var(--very-dark-gray), #fff 15%);
   --button-bg-hover: color-mix(in srgb, var(--menu-color), #fff 20%);
   --button-bg-selected: color-mix(in srgb, var(--very-dark-gray), #fff 18%);
+
+  --felt: #0b6b3a;
+  --wood-mid: #6b4220;
+  --wood-dark: #3a210f;
 }
 
 html {
