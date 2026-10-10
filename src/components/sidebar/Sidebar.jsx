@@ -19,14 +19,20 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
       </button>
       <div id={panelId} className="sidebar-panel" inert={!isOpen}>
         <fieldset className="difficulty-group">
-          <legend>Number of Guesses</legend>
+          <legend>Difficulty</legend>
           {Object.entries(DIFFICULTIES).map(([name, guesses]) => (
-            <div key={name} className="difficulty-button">
-              <label htmlFor={name}>{name} [{guesses} Guesses]</label>
+            <div key={name} className="difficulty-option">
+              <label 
+                htmlFor={name} 
+                className="difficulty-label">
+                  <span className="label-span difficulty-name">{name}</span> 
+                  <span className="label-span difficulty-guesses">[{guesses} Guesses]</span>
+              </label>
               <input 
                 id={name} 
                 type="radio"
                 name="difficulty"
+                className="difficulty"
                 checked={currentDifficulty === guesses}
                 onChange={() => setDifficulty(guesses)} />
             </div>
