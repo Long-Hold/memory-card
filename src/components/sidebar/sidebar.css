@@ -29,6 +29,23 @@
     box-shadow: inset -3px 0 6px rgb(0 0 0 / 0.4), 4px 0 14px rgb(0 0 0 / 0.5);
   }
 
+  .difficulty-group, .difficulty-label {
+    width: 100%;
+    border: none;
+    text-align: left;
+    text-transform: capitalize;
+  }
+
+  .difficulty-option, .difficulty-label {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  .difficulty-option {
+    gap: var(--small-items-gap);
+  }
+
   @media screen and (width <= 48rem) {
     width: 100%;
     position: fixed;
@@ -74,6 +91,14 @@
       }
     }
   }
+}
+
+.difficulty-option {
+  background-color: yellow;
+}
+
+.difficulty-option:has(.difficulty:checked) {
+  background-color: red;
 }
 
 /* Intentionally global: locks page scroll while the mobile sidebar is open.
