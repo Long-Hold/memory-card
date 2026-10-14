@@ -34,7 +34,7 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
                 htmlFor={name} 
                 className="difficulty-label">
                   <span className="label-span difficulty-name">{name}</span> 
-                  <span className="label-span difficulty-guesses">[{guesses} Guesses]</span>
+                  <span className="label-span difficulty-guesses">{guesses} Guesses</span>
               </label>
             </div>
           ))}
