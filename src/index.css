@@ -3,15 +3,22 @@
   --menu-color: color-mix(in srgb, var(--very-dark-gray), #fff 5%);
   --selected-gold: #f5c542;
   --container-padding: 0.5rem 1rem;
+  --gap-between-options: 1rem;
   --small-items-gap: 0.5rem;
 
-  --button-bg: color-mix(in srgb, var(--very-dark-gray), #fff 15%);
+  --button-bg: var(--felt);
   --button-bg-hover: color-mix(in srgb, var(--menu-color), #fff 20%);
   --button-bg-selected: color-mix(in srgb, var(--very-dark-gray), #fff 18%);
 
   --felt: #0b6b3a;
   --wood-mid: #6b4220;
   --wood-dark: #3a210f;
+
+  --felt-texture:
+    /* vignette: darker edges, like light pooling over a table */
+    radial-gradient(ellipse at center, transparent 40%, rgb(0 0 0 / 0.4) 100%),
+    /* fabric speckle */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.14 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 html {
