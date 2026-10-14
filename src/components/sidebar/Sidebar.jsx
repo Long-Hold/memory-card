@@ -22,19 +22,20 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
           <legend>Difficulty</legend>
           {Object.entries(DIFFICULTIES).map(([name, guesses]) => (
             <div key={name} className="difficulty-option">
-              <label 
-                htmlFor={name} 
-                className="difficulty-label">
-                  <span className="label-span difficulty-name">{name}</span> 
-                  <span className="label-span difficulty-guesses">[{guesses} Guesses]</span>
-              </label>
               <input 
                 id={name} 
                 type="radio"
                 name="difficulty"
                 className="difficulty"
                 checked={currentDifficulty === guesses}
-                onChange={() => setDifficulty(guesses)} />
+                onChange={() => setDifficulty(guesses)} 
+              />
+              <label 
+                htmlFor={name} 
+                className="difficulty-label">
+                  <span className="label-span difficulty-name">{name}</span> 
+                  <span className="label-span difficulty-guesses">[{guesses} Guesses]</span>
+              </label>
             </div>
           ))}
         </fieldset>
