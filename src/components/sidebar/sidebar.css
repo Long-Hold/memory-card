@@ -28,16 +28,15 @@
     padding: var(--container-padding);
     width: 100%;
     background-color: var(--wood-mid);
-    background-image:
-      /* two grain layers with different periods so it doesn't look mechanical */
-      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.08) 0 2px, transparent 2px 9px),
-      repeating-linear-gradient(90deg, rgb(255 255 255 / 0.04) 0 1px, transparent 1px 13px);
+    background-image: var(--wood-texture);
     box-shadow: inset -3px 0 6px rgb(0 0 0 / 0.4), 4px 0 14px rgb(0 0 0 / 0.5);
   }
 
   .difficulty-group {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     gap: var(--gap-between-options);
   }
 
@@ -48,15 +47,17 @@
     place-content: center;
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid white;
+    background-color: var(--wood-mid);
+    background-image: var(--wood-texture);
+    box-shadow: var(--inset-shadow);
     border-radius: 50%;
     cursor: pointer;
   }
 
   .difficulty::before {
     content: "";
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 1rem;
+    height: 1rem;
     background-color: var(--selected-gold);
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2C9,7 4,9 4,14C4,16 6,18 8,18C9,18 10,18 11,17C11,17 11.32,19 9,22H15C13,19 13,17 13,17C14,18 15,18 16,18C18,18 20,16 20,14C20,9 15,7 12,2Z'/%3E%3C/svg%3E") center / contain no-repeat;
     transform: scale(0);
@@ -83,10 +84,29 @@
   }
 
   .difficulty-option {
+    position: relative;
     background-color: var(--button-bg);
+    background-image: var(--felt-texture);
+    box-shadow: var(--inset-shadow);
     padding: var(--container-padding);
     border-radius: 10px;
     gap: var(--small-items-gap);
+    width: 100%;
+    &:hover {
+      background-color: var(--button-bg-hover);
+    }
+    &:has(.difficulty:checked) {
+      outline: 1px solid var(--selected-gold);
+      background-color: var(--button-bg-selected);
+    }
+
+    /* Makes the entire .difficulty-option container clickable */
+    .difficulty-label::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+    }
   }
 
   .difficulty-guesses {
