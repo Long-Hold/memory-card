@@ -69,3 +69,8 @@ input {
   padding: 0;
   margin: 0;
 }
+
+legend {
+  font-size: large;
+  margin-bottom: var(--small-items-gap);
+}
