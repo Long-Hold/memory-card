@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "fira_sansregular";
+  src: url("../src/assets/fonts/firasans-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --very-dark-gray: #242424;
   --menu-color: color-mix(in srgb, var(--very-dark-gray), #fff 5%);
@@ -41,4 +48,7 @@ html, body, #root {
 
 body {
   background-color: var(--very-dark-gray);
+  font-family:
+    "fira_sansregular", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
