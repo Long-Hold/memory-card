@@ -11,14 +11,14 @@ function App() {
 
   return (
     <>
-      <header className='website-header'>
-        <h1>Concentration</h1>
-      </header>
       <Sidebar
         currentDifficulty={difficulty} 
         setDifficulty={setDifficulty}
       />
       <main>
+        <header className='website-header'>
+          <h1>Concentration</h1>
+        </header>
         <GamePage 
           key={difficulty} // triggers a render if the user changes difficulty
           difficulty={difficulty}
