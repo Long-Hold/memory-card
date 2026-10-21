@@ -43,17 +43,3 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
     </aside>
   )
 }
-
-function DifficultyButton({onClick, currentDifficulty, difficultyToSet}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={currentDifficulty === difficultyToSet}
-      className="difficulty-button"
-    >
-      <span className="active-indicator" aria-hidden="true">◯ </span>
-      {difficultyToSet} Guesses
-    </button>
-  )
-}
