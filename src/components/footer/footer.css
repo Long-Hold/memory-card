@@ -1,0 +1,31 @@
+footer {
+  background-color: var(--menu-color);
+}
+
+footer, .personal-links {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.personal-links-list {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: var(--small-items-gap);
+  align-items: center;
+
+  list-style: none;
+
+  a {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
