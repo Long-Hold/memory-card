@@ -2,12 +2,6 @@
   --sidebar-width: 15rem;
 }
 
-/* Note: Main is also 100vh/dvh to keep footer out of view unless scrolled */
-.sidebar, .sidebar-panel {
-  height: 100vh;
-  height: 100dvh;
-}
-
 .sidebar {
   width: var(--sidebar-width);
   text-transform: capitalize;
@@ -25,6 +19,7 @@
     gap: var(--small-items-gap);
     padding: var(--container-padding);
     width: 100%;
+    height: 100%;
     background-color: var(--wood-mid);
     background-image: var(--wood-texture);
     box-shadow: inset -3px 0 6px rgb(0 0 0 / 0.4), 4px 0 14px rgb(0 0 0 / 0.5);
@@ -115,7 +110,6 @@
     width: 100%;
     position: fixed;
     inset: 0;
-    height: 100dvh;
     z-index: 10;
     /* The aside spans the viewport, so let clicks pass through it.
     Interactive children opt back in below. */

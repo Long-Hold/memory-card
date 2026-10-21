@@ -11,8 +11,9 @@ body {
 }
 
 main {
-  max-height: 100vh;
-  max-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
 }
 
 /* Larger viewport sizing */
@@ -20,15 +21,11 @@ main {
   #root {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 100vh auto;
+    grid-template-rows: 100dvh auto;
     grid-template-areas: 
-    "sidebar header"
     "sidebar main"
     "footer footer";
-
-    .website-header {
-      grid-area: header;
-    }
 
     .sidebar {
       grid-area: sidebar;
