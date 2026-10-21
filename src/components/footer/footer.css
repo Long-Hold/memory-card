@@ -1,31 +1,50 @@
-footer {
-  background-color: var(--menu-color);
-}
-
 footer, .personal-links {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   text-align: center;
+}
+
+footer {
+  background-color: var(--menu-color);
+  padding: var(--container-padding);
+  gap: var(--small-items-gap);
+}
+
+#personal-links-heading {
+  font-size: small;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.personal-links-list, .social-link {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .personal-links-list {
   padding: 0;
   width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  gap: var(--small-items-gap);
-  align-items: center;
-
   list-style: none;
+  gap: var(--gap-between-options);
 
-  a {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
+  .social-link {
+    gap: var(--small-items-gap);
+    font-size: small;
+  }
+
+  .link-icon {
+    height: 1.2em;
+    width: fit-content;
+  }
+
+  /* The CDN version is black, so the only way I can make it white is to invert via filter */
+  .github-icon {
+    filter: invert(1);
   }
 }
