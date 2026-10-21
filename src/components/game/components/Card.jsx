@@ -9,7 +9,7 @@ export function Card({cardId, index, imageSrc, suit, value, isFlipped, isMatched
       data-suit={suit}
       data-value={value}
       disabled={isMatched}
-      aria-label={isFlipped ? `Card #${index + 1}` : `${value} of ${suit}`}
+      aria-label={isFlipped ?  `${value} of ${suit}` : `Card #${index + 1}`}
       onClick={recordClick}
     >
       <img src={imageSrc} alt=""></img>
