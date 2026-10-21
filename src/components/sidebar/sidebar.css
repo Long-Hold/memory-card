@@ -2,13 +2,11 @@
   --sidebar-width: 15rem;
 }
 
+/* Note: Main is also 100vh/dvh to keep footer out of view unless scrolled */
 .sidebar, .sidebar-panel {
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
 }
-
-/* .sidebar * {
-  text-transform: inherit;
-} */
 
 .sidebar {
   width: var(--sidebar-width);
