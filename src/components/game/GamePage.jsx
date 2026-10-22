@@ -13,7 +13,6 @@ const playingCardsApi = "https://deckofcardsapi.com/api/deck/new/?deck_count=1";
 const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
 
 export function GamePage({difficulty}) {
-  const [deck, setDeck] = useState(null);
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -26,28 +25,18 @@ export function GamePage({difficulty}) {
 
   // Fetches cards from API and causes a re-render to display them
   const initializeCards = async (cardStyle) => {
-    const cards = await fetchDeck(cardStyle);
-    const images = await fetchStandardCardImages(cards.deck_id);
+    const deck = await fetchDeck(cardStyle);
+    const { cards } = await fetchStandardCardImages(deck.deck_id);
 
-    if (cards && images) {
-      setDeck({
-        id: cards.deck_id,
-        remaining: cards.remaining,
-      });
 
-      // Makes the array flat
-      const cleanedCards = images.cards.map((card) => {
-        const {images, ...rest} = card;
-        return {
-          ...rest,
-          image: images.png,
-        }
-      });
+    // Makes the array flat
+    const cleanedCards = cards.map(({images, ...rest}) => ({
+      ...rest,
+      image: images.png,
+    }));
 
-      const shuffledCards = shuffleArray(cleanedCards);
-      setImgs([...shuffledCards]);
-      setLoading(false);
-    }
+    setImgs(shuffleArray(cleanedCards));
+    setLoading(false);
   }
 
   const handleCardClick = (clickedCard) => {
