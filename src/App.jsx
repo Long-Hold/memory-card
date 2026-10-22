@@ -16,7 +16,7 @@ function App() {
         setDifficulty={setDifficulty}
       />
       <main>
-        <header className='website-header'>
+        <header className='game-header'>
           <h1>Concentration</h1>
         </header>
         <GamePage 
