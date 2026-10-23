@@ -15,6 +15,14 @@ main {
   height: 100dvh;
   overflow-y: auto;
   padding: var(--container-padding);
+  text-align: center;
+}
+
+.game-header {
+  border-radius: 10px;
+  box-shadow: var(--inset-shadow);
+  background-color: var(--card-red);
+  background-image: var(--felt-texture);
 }
 
 /* Larger viewport sizing */
