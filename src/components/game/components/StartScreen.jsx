@@ -1,4 +1,5 @@
 import { useEffect, useRef} from "react";
+import "../styles/startScreen.css";
 
 export function StartScreen({loadCards}) {
   const buttonRef = useRef(null);
