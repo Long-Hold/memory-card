@@ -60,6 +60,7 @@ button {
   max-width: 100%;
   min-height: 44px;
   white-space: normal;
+  cursor: pointer;
 }
 
 fieldset,
