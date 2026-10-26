@@ -4,6 +4,7 @@ import { DIFFICULTIES } from './constants/difficulties';
 import { GamePage } from './components/game/GamePage'
 import { Sidebar } from './components/sidebar/Sidebar'
 import { Footer } from './components/footer/Footer';
+import { MainHeader } from './components/mainHeader/MainHeader';
 import './App.css';
 
 function App() {
@@ -16,9 +17,7 @@ function App() {
         setDifficulty={setDifficulty}
       />
       <main>
-        <header className='game-header'>
-          <h1>Concentration</h1>
-        </header>
+        <MainHeader />
         <GamePage 
           key={difficulty} // triggers a render if the user changes difficulty
           difficulty={difficulty}
