@@ -1,7 +1,7 @@
 .start-screen {
   width: 100%;
   max-width: 48rem;
-  
+
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -13,6 +13,13 @@
   background-color: var(--menu-color);
   background-image: var(--felt-texture);
   padding: var(--container-padding);
+
+  .rule-list {
+    max-width: 70ch;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--small-items-gap);
+  }
 
   .start-game-button {
     color: white;
