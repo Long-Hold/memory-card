@@ -9,9 +9,9 @@ export function StartScreen({loadCards}) {
   }, []);
 
   return (
-    <div className="start-screen">
-      <h2>Game Rules</h2>
-      <ol>
+    <section className="start-screen" aria-labelledby="start-screen-heading">
+      <h2 id="start-screen-heading">Game Rules</h2>
+      <ol className="rule-list">
         <li>Pick any two cards. Once a card is selected, you cannot change it.</li>
         <li>If the cards have the same <b>Color</b> and <b>Rank</b>, they will be removed from the board.</li>
         <li>If the <b>Color</b> and / or <b>Rank</b> do not match, the cards flip back over and your <b>Remaining Guesses</b> go down.</li>
@@ -24,6 +24,6 @@ export function StartScreen({loadCards}) {
       >
         Start Game
       </button>
-    </div>
+    </section>
   )
 }
