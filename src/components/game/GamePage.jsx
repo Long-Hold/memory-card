@@ -117,7 +117,7 @@ export function GamePage({difficulty}) {
   }
 
   return (
-    <div>
+    <div className="game-area">
       <GameState 
         winStreak={stats.winStreak}
         remainingGuesses={stats.remainingTurns}
