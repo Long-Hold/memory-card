@@ -1,15 +1,29 @@
 .start-screen {
   width: 100%;
-
+  max-width: 48rem;
+  
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   gap: var(--small-items-gap);
 
-  border-radius: 10px;
+  border-radius: var(--small-radius);
   box-shadow: var(--inset-shadow);
   background-color: var(--menu-color);
   background-image: var(--felt-texture);
   padding: var(--container-padding);
+
+  .start-game-button {
+    color: white;
+    border: none;
+    background-color: var(--button-bg);
+    background-image: var(--felt-texture);
+    border-radius: var(--small-radius);
+    box-shadow: var(--inset-shadow);
+
+    &:hover {
+      background-color: var(--button-bg-hover);
+    }
+  }
 }
