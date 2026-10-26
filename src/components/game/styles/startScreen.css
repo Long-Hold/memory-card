@@ -1,0 +1,15 @@
+.start-screen {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--small-items-gap);
+
+  border-radius: 10px;
+  box-shadow: var(--inset-shadow);
+  background-color: var(--menu-color);
+  background-image: var(--felt-texture);
+  padding: var(--container-padding);
+}
