@@ -8,8 +8,8 @@ export function GameOver({hasWon, restartGame}) {
   }, []);
 
   return (
-    <section className="game-over-screen">
-      <h2 className="game-over-text" role="alert">{hasWon ? 'Round Won!' : 'Out of Turns!'}</h2>
+    <section className="game-over-screen" aria-labelledby="game-over-heading">
+      <h2 id="game-over-heading" className="game-over-text" role="alert">{hasWon ? 'Round Won!' : 'Out of Turns!'}</h2>
       <button ref={buttonRef} type="button" onClick={restartGame}>New Game</button>
     </section>
   )
