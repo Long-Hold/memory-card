@@ -20,8 +20,9 @@ export function StartScreen({loadCards}) {
       </ol>
       <button
       ref={buttonRef}
-        type="button"
-        onClick={loadCards}
+      type="button"
+      className="start-game-button"
+      onClick={loadCards}
       >
         Start Game
       </button>
