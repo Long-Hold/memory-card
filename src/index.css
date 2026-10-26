@@ -13,6 +13,8 @@
   --gap-between-options: 1rem;
   --small-items-gap: 0.5rem;
 
+  --small-radius: 10px;
+
   --button-bg: var(--felt);
   --button-bg-hover: color-mix(in srgb, var(--button-bg), #fff 20%);
   --button-bg-selected: color-mix(in srgb, var(--button-bg), #000000 20%);
