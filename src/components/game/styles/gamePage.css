@@ -6,6 +6,10 @@
   gap: var(--gap-between-options);
 }
 
+.game-status {
+  text-align: center;
+}
+
 /* TEMP STYLING FOR TESTING */
 .cards-area {
   width: 100%;
