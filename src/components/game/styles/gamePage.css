@@ -1,3 +1,11 @@
+.game-area {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-between-options);
+}
+
 /* TEMP STYLING FOR TESTING */
 .cards-area {
   width: 100%;
