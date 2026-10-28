@@ -63,8 +63,21 @@
   outline-offset: 2px;
   transition: filter 0.3s ease;
 
+  position: relative;
+  isolation: isolate;
+
   img {
     width: 100%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-size: 100px; /* tune: smaller value = finer grain */
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 
   &:hover {
