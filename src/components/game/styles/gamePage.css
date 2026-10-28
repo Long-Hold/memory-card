@@ -1,3 +1,26 @@
+.start-screen, 
+.game-over-screen,
+.game-status {
+  border-radius: var(--small-radius);
+  box-shadow: var(--inset-shadow);
+  background-color: var(--menu-color);
+  background-image: var(--felt-texture);
+  padding: var(--container-padding);
+}
+
+.start-game-button {
+  color: white;
+  border: none;
+  background-color: var(--button-bg);
+  background-image: var(--felt-texture);
+  border-radius: var(--small-radius);
+  box-shadow: var(--inset-shadow);
+
+  &:hover {
+    background-color: var(--button-bg-hover);
+  }
+}
+
 .game-area {
   display: flex;
   flex-flow: column nowrap;
@@ -8,6 +31,11 @@
 
 .game-status {
   text-align: center;
+
+  .status-metrics {
+    display: flex;
+    gap: var(--small-items-gap);
+  }
 }
 
 /* TEMP STYLING FOR TESTING */
