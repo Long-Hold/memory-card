@@ -11,8 +11,8 @@ body {
 }
 
 main {
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   padding: var(--container-padding);
 
   display: flex;
@@ -38,6 +38,8 @@ main {
 
     main {
       grid-area: main;
+      height: 100vh;
+      height: 100dvh;
     }
 
     footer {
