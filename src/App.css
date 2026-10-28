@@ -1,7 +1,6 @@
 #root {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
 }
 
 body {
@@ -11,8 +10,7 @@ body {
 }
 
 main {
-  min-height: 100vh;
-  min-height: 100dvh;
+  flex: 1;
   padding: var(--container-padding);
 
   display: flex;
