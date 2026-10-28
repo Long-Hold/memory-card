@@ -10,7 +10,6 @@ import { shuffleArray } from "./util/shuffleArray";
 import { StartScreen } from "./components/StartScreen";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new/?deck_count=1";
-const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
 
 export function GamePage({difficulty}) {
   const [cardImgs, setImgs] = useState(null);
@@ -36,6 +35,15 @@ export function GamePage({difficulty}) {
     }));
 
     setImgs(shuffleArray(cleanedCards));
+
+    await Promise.all(
+      cleanedCards.map(({ image }) => {
+        const img = new Image();
+        img.src = image;
+        return img.decode().catch(() => {}); // ignore failures, don't block the game
+      })
+    );
+    
     setLoading(false);
   }
 
@@ -132,7 +140,7 @@ export function GamePage({difficulty}) {
               <Card 
                 cardId={card.code}
                 index={index}
-                imageSrc={isFlipped ? card.image : cardBackImg}
+                imageSrc={card.image}
                 suit={card.suit}
                 value={card.value}
                 isFlipped={isFlipped}
