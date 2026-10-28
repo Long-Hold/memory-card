@@ -1,18 +1,23 @@
 import "../styles/card.css";
 
+const cardBackImg = "https://deckofcardsapi.com/static/img/back.png";
+
 export function Card({cardId, index, imageSrc, suit, value, isFlipped, isMatched, isNotAMatch, recordClick}) {
   return (
     <button
-      className={`card${isFlipped ? " flipped" : " notFlipped"}${isNotAMatch ? " mismatch" : ""}`}
+      className={`card${isFlipped ? " flipped" : ""}${isNotAMatch ? " mismatch" : ""}`}
       type="button"
       data-id={cardId}
       data-suit={suit}
       data-value={value}
       disabled={isMatched}
-      aria-label={isFlipped ?  `${value} of ${suit}` : `Card #${index + 1}`}
+      aria-label={isFlipped ? `${value} of ${suit}` : `Card #${index + 1}`}
       onClick={recordClick}
     >
-      <img src={imageSrc} alt=""></img>
+      <span className="card-inner">
+        <img className="card-face card-back" src={cardBackImg} alt="" />
+        <img className="card-face card-front" src={imageSrc} alt="" decoding="async" />
+      </span>
     </button>
   )
 }
