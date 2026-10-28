@@ -1,11 +1,15 @@
 .start-screen, 
 .game-over-screen,
 .game-status {
+  width: 100%;
+  max-width: 48rem;
+
   border-radius: var(--small-radius);
   box-shadow: var(--inset-shadow);
   background-color: var(--menu-color);
   background-image: var(--felt-texture);
   padding: var(--container-padding);
+  color: rgb(225, 225, 225);
 }
 
 .start-game-button {
