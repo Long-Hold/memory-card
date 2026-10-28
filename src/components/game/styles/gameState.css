@@ -1,0 +1,8 @@
+.game-status {
+  text-align: center;
+
+  .status-metrics {
+    display: flex;
+    gap: var(--small-items-gap);
+  }
+}

@@ -1,3 +1,5 @@
+import "../styles/gameState.css";
+
 export function GameState({winStreak, remainingGuesses}) {
   return (
     <section className="game-status" aria-labelledby="game-status-heading">

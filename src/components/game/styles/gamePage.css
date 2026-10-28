@@ -29,15 +29,6 @@
   gap: var(--gap-between-options);
 }
 
-.game-status {
-  text-align: center;
-
-  .status-metrics {
-    display: flex;
-    gap: var(--small-items-gap);
-  }
-}
-
 /* TEMP STYLING FOR TESTING */
 .cards-area {
   width: 100%;
