@@ -3,7 +3,9 @@ import { DIFFICULTIES } from "../../constants/difficulties"
 import "../sidebar/sidebar.css";
 
 export function Sidebar({currentDifficulty, setDifficulty}) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(
+      () => window.matchMedia("(min-width: 48rem)").matches
+    );
   const panelId = useId();
   
   return (
