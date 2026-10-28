@@ -21,31 +21,9 @@
   40%, 80% { transform: translate3d(4px, 0, 0); }
 }
 
-@keyframes flipToFace {
-  0% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes flipToBack {
-  0% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
 .card {
+  perspective: 800px;
+
   /* Undo any reset.css defaults
     This is so the card images are the only visual appearing rather than
     having a default button in the background.
@@ -65,10 +43,6 @@
 
   position: relative;
   isolation: isolate;
-
-  img {
-    width: 100%;
-  }
 
   &::after {
     content: "";
@@ -96,6 +70,26 @@
     outline-color:  #e5484d;
   }
 
+  .card-inner {
+    display: grid;
+    transform-style: preserve-3d;
+  }
+
+  .card-face {
+    grid-area: 1 / 1;
+    width: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* older iOS Safari */
+  }
+
+  .card-front {
+    transform: rotateY(180deg);
+  }
+
+  &.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     &:disabled {
       animation: none;
@@ -104,26 +98,19 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    &.mismatch, &.flipped img, &.notFlipped img {
+    &.mismatch {
       animation-timing-function: ease-in-out;
       animation-duration: 0.2s;
       animation-fill-mode: forwards;
-    }
-    
-    &.mismatch {
       animation-name: shake;
-    }
-
-    &.flipped img {
-      animation-name: flipToFace;
-    }
-
-    &.notFlipped img {
-      animation-name: flipToBack;
     }
 
     &:disabled {
       animation: fadeOut 1s ease-out forwards;
+    }
+
+    .card-inner {
+      transition: transform 0.4s ease-in-out;
     }
   }
 }
