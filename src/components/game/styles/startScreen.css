@@ -1,10 +1,4 @@
 .start-screen {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--small-items-gap);
-
   .rule-list {
     max-width: 70ch;
     display: flex;
