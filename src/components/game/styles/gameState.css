@@ -1,6 +1,7 @@
 .game-status {
   text-transform: uppercase;
   text-align: center;
+  flex-shrink: 0;
   .status-metrics {
     display: flex;
     flex-flow: row wrap;
