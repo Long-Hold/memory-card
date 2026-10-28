@@ -1,3 +1,7 @@
+import cardBackUrl from "../../assets/images/header/card-back.svg";
+import titleUrl from "../../assets/images/header/title.svg";
+import cardFaceUrl from "../../assets/images/header/card-face.svg";
+
 import "./mainHeader.css";
 
 export function MainHeader() {
@@ -15,7 +19,7 @@ export function MainHeader() {
 function CardBack() {
   return (
     <img 
-      src="../src/assets/images/header/card-back.svg" 
+      src={cardBackUrl}
       alt="" />
   )
 }
@@ -23,7 +27,7 @@ function CardBack() {
 function Title() {
   return (
     <
-      img src="../src/assets/images/header/title.svg"  
+      img src={titleUrl} 
       alt="Concentration"
     />
   )
@@ -32,7 +36,7 @@ function Title() {
 function CardFace() {
   return (
     <img 
-      src="../src/assets/images/header/card-face.svg" 
+      src={cardFaceUrl}
       alt="" />
   )
 }
