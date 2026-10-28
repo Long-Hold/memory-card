@@ -1,8 +1,26 @@
 .game-status {
+  text-transform: uppercase;
   text-align: center;
-
   .status-metrics {
     display: flex;
-    gap: var(--small-items-gap);
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: var(--gap-between-options)
+  }
+
+  .metric {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 0.1em;
+  }
+
+  .value {
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--selected-gold);
   }
 }
