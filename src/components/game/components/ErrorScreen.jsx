@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import reloadUrl from "../../../assets/images/icons/reload.svg";
 import "../styles/errorScreen.css";
 
-export function ErrorScreen({message}) {
+export function ErrorScreen({ message }) {
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -19,15 +19,15 @@ export function ErrorScreen({message}) {
         type="button"
         onClick={() => window.location.reload()}
       >
-        <b>Reload Page</b> 
+        <b>Reload Page</b>
         <img
-          className="button-icon" 
-          src={reloadUrl} 
+          className="button-icon"
+          src={reloadUrl}
           height={32}
           width={32}
           alt=""
         ></img>
       </button>
     </section>
-  )
+  );
 }

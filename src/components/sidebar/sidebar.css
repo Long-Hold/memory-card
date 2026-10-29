@@ -39,7 +39,9 @@
     height: 100%;
     background-color: var(--wood-mid);
     background-image: var(--wood-texture);
-    box-shadow: inset -3px 0 6px rgb(0 0 0 / 0.4), 4px 0 14px rgb(0 0 0 / 0.5);
+    box-shadow:
+      inset -3px 0 6px rgb(0 0 0 / 0.4),
+      4px 0 14px rgb(0 0 0 / 0.5);
   }
 
   .difficulty-group {
@@ -69,7 +71,8 @@
     width: 1rem;
     height: 1rem;
     background-color: var(--selected-gold);
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2C9,7 4,9 4,14C4,16 6,18 8,18C9,18 10,18 11,17C11,17 11.32,19 9,22H15C13,19 13,17 13,17C14,18 15,18 16,18C18,18 20,16 20,14C20,9 15,7 12,2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2C9,7 4,9 4,14C4,16 6,18 8,18C9,18 10,18 11,17C11,17 11.32,19 9,22H15C13,19 13,17 13,17C14,18 15,18 16,18C18,18 20,16 20,14C20,9 15,7 12,2Z'/%3E%3C/svg%3E")
+      center / contain no-repeat;
     transform: scale(0);
   }
 
@@ -77,13 +80,15 @@
     transform: scale(1);
   }
 
-  .difficulty-group, .difficulty-label {
+  .difficulty-group,
+  .difficulty-label {
     width: 100%;
     border: none;
     text-align: left;
   }
 
-  .difficulty-option, .difficulty-label {
+  .difficulty-option,
+  .difficulty-label {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -158,7 +163,7 @@
     .sidebar-panel {
       pointer-events: auto;
       overscroll-behavior: contain; /* panel scrolling never chains to the page */
-      overflow-y: auto;             /* panel scrolls itself if content outgrows the screen */
+      overflow-y: auto; /* panel scrolls itself if content outgrows the screen */
       transform: translateX(0);
       visibility: visible;
     }
@@ -172,12 +177,16 @@
     @media (prefers-reduced-motion: no-preference) {
       /* Opening: become visible instantly, then slide in */
       .sidebar-panel {
-        transition: transform 0.2s ease-out, visibility 0s;
+        transition:
+          transform 0.2s ease-out,
+          visibility 0s;
       }
 
       /* Closing: slide out first, then hide after the slide finishes */
       .sidebar-panel[inert] {
-        transition: transform 0.2s ease-in, visibility 0s 0.2s;
+        transition:
+          transform 0.2s ease-in,
+          visibility 0s 0.2s;
       }
     }
   }

@@ -1,13 +1,13 @@
-import { useState, useId } from "react"
-import { DIFFICULTIES } from "../../constants/difficulties"
+import { useState, useId } from "react";
+import { DIFFICULTIES } from "../../constants/difficulties";
 import "../sidebar/sidebar.css";
 
-export function Sidebar({currentDifficulty, setDifficulty}) {
+export function Sidebar({ currentDifficulty, setDifficulty }) {
   const [isOpen, setIsOpen] = useState(
-      () => window.matchMedia("(min-width: 48rem)").matches
-    );
+    () => window.matchMedia("(min-width: 48rem)").matches,
+  );
   const panelId = useId();
-  
+
   return (
     <aside className="sidebar" aria-label="Game settings">
       <button
@@ -18,33 +18,33 @@ export function Sidebar({currentDifficulty, setDifficulty}) {
         aria-controls={panelId}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        { isOpen ? <BackBurgerIcon /> : <ForwardBurgerIcon />}
+        {isOpen ? <BackBurgerIcon /> : <ForwardBurgerIcon />}
       </button>
       <div id={panelId} className="sidebar-panel" inert={!isOpen}>
         <fieldset className="difficulty-group">
           <legend>Difficulty</legend>
           {Object.entries(DIFFICULTIES).map(([name, guesses]) => (
             <div key={name} className="difficulty-option">
-              <input 
-                id={name} 
+              <input
+                id={name}
                 type="radio"
                 name="difficulty"
                 className="difficulty"
                 checked={currentDifficulty === guesses}
-                onChange={() => setDifficulty(guesses)} 
+                onChange={() => setDifficulty(guesses)}
               />
-              <label 
-                htmlFor={name} 
-                className="difficulty-label">
-                  <span className="label-span difficulty-name">{name}</span> 
-                  <span className="label-span difficulty-guesses">{guesses} Guesses</span>
+              <label htmlFor={name} className="difficulty-label">
+                <span className="label-span difficulty-name">{name}</span>
+                <span className="label-span difficulty-guesses">
+                  {guesses} Guesses
+                </span>
               </label>
             </div>
           ))}
         </fieldset>
       </div>
     </aside>
-  )
+  );
 }
 
 function ForwardBurgerIcon() {

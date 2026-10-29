@@ -13,12 +13,15 @@ import "./styles/gamePage.css";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new/?deck_count=1";
 
-export function GamePage({difficulty}) {
+export function GamePage({ difficulty }) {
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [gameError, setError] = useState(null);
 
-  const [stats, setStats] = useState({winStreak: 0, remainingTurns: difficulty});
+  const [stats, setStats] = useState({
+    winStreak: 0,
+    remainingTurns: difficulty,
+  });
 
   const [currentPair, setCurrentPair] = useState([]);
 
@@ -45,7 +48,7 @@ export function GamePage({difficulty}) {
           const img = new Image();
           img.src = image;
           return img.decode().catch(() => {});
-        })
+        }),
       );
 
       setLoading(false);
@@ -68,18 +71,23 @@ export function GamePage({difficulty}) {
       if (firstCard.id === clickedCard.id) return;
 
       if (cardsMatch(firstCard, clickedCard)) {
-        setMatchedCardIds(prev => new Set(prev).add(firstCard.id).add(clickedCard.id));
+        setMatchedCardIds((prev) =>
+          new Set(prev).add(firstCard.id).add(clickedCard.id),
+        );
       } else {
-        setStats(prev => ({ ...prev, remainingTurns: prev.remainingTurns - 1 }));
+        setStats((prev) => ({
+          ...prev,
+          remainingTurns: prev.remainingTurns - 1,
+        }));
       }
     }
 
-    setCurrentPair(prev => [...prev, clickedCard]);
+    setCurrentPair((prev) => [...prev, clickedCard]);
   };
 
   const restartGame = () => {
-    setImgs(prev => [...shuffleArray(prev)]);
-    setStats(prev => ({
+    setImgs((prev) => [...shuffleArray(prev)]);
+    setStats((prev) => ({
       ...prev,
       winStreak: prev.remainingTurns <= 0 ? 0 : prev.winStreak + 1,
       remainingTurns: difficulty,
@@ -87,7 +95,7 @@ export function GamePage({difficulty}) {
 
     setMatchedCardIds(new Set());
     setCurrentPair([]);
-  }
+  };
 
   if (gameError) {
     return (
@@ -99,36 +107,31 @@ export function GamePage({difficulty}) {
   }
 
   if (loading) {
-    return (
-      <StartScreen loadCards={() => initializeCards(playingCardsApi)}/>
-    )
+    return <StartScreen loadCards={() => initializeCards(playingCardsApi)} />;
   }
 
-  const hasWon = (cardImgs.length > 0 && matchedCardIds.size === cardImgs.length);
+  const hasWon = cardImgs.length > 0 && matchedCardIds.size === cardImgs.length;
   const isOutOfTurns = stats.remainingTurns <= 0;
   if (hasWon || isOutOfTurns) {
-    return (
-      <GameOver
-        hasWon={hasWon}
-        restartGame={restartGame}
-      />
-    )
+    return <GameOver hasWon={hasWon} restartGame={restartGame} />;
   }
 
   return (
     <div className="game-area">
-      <GameState 
+      <GameState
         winStreak={stats.winStreak}
         remainingGuesses={stats.remainingTurns}
       />
       <ul className="cards-area" aria-label="Memory card grid">
         {cardImgs.map((card, index) => {
           const isMatched = matchedCardIds.has(card.code);
-          const isFlipped = currentPair.some(guessedCard => guessedCard.id === card.code);
-          const notAMatch = (isFlipped && !isMatched && currentPair.length === 2);
+          const isFlipped = currentPair.some(
+            (guessedCard) => guessedCard.id === card.code,
+          );
+          const notAMatch = isFlipped && !isMatched && currentPair.length === 2;
           return (
-            <li key={card.code}> 
-              <Card 
+            <li key={card.code}>
+              <Card
                 index={index}
                 imageSrc={card.image}
                 suit={card.suit}
@@ -136,14 +139,18 @@ export function GamePage({difficulty}) {
                 isFlipped={isFlipped}
                 isMatched={isMatched}
                 isNotAMatch={notAMatch}
-                recordClick={() => 
-                  handleCardClick({id: card.code, suit: card.suit, value: card.value})
+                recordClick={() =>
+                  handleCardClick({
+                    id: card.code,
+                    suit: card.suit,
+                    value: card.value,
+                  })
                 }
               />
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }

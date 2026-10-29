@@ -6,9 +6,18 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  20%, 60% { transform: translate3d(-4px, 0, 0); }
-  40%, 80% { transform: translate3d(4px, 0, 0); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  20%,
+  60% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  80% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 .card {
@@ -49,7 +58,7 @@
       filter: brightness(1.2);
     }
   }
-  
+
   &:focus-visible {
     outline-color: white;
   }
@@ -57,9 +66,9 @@
   &.flipped {
     outline-color: var(--selected-gold);
   }
-  
+
   &.mismatch {
-    outline-color:  #e5484d;
+    outline-color: #e5484d;
   }
 
   .card-inner {

@@ -1,7 +1,7 @@
 /**
  * Shuffles an array randomly using the Fisher-Yates algorithm.
  * Creates and returns a new shallow copy, leaving the original array unmutated.
- * 
+ *
  * @param {Array} arr - The array to shuffle.
  * @returns {Array} A new array with elements in a random order.
  */

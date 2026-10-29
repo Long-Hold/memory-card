@@ -80,12 +80,12 @@ Vite prints a local address in the terminal. Open it in your browser. An interne
 
 ## Available Scripts
 
-| Command        | Description                              |
-| -------------- | ---------------------------------------- |
-| `pnpm dev`     | Starts the Vite development server      |
-| `pnpm build`   | Creates a production build in `dist/`   |
-| `pnpm preview` | Serves the production build locally     |
-| `pnpm lint`    | Runs Oxlint                              |
+| Command        | Description                           |
+| -------------- | ------------------------------------- |
+| `pnpm dev`     | Starts the Vite development server    |
+| `pnpm build`   | Creates a production build in `dist/` |
+| `pnpm preview` | Serves the production build locally   |
+| `pnpm lint`    | Runs Oxlint                           |
 
 ## Project Structure
 

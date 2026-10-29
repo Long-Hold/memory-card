@@ -1,4 +1,4 @@
-.start-screen, 
+.start-screen,
 .game-over-screen,
 .game-status,
 .error-screen {
@@ -55,11 +55,11 @@
   flex: 1;
   min-height: 0;
 
-  overflow-y: auto;  /* the one scroll container */
+  overflow-y: auto; /* the one scroll container */
   scrollbar-width: thin;
   scroll-behavior: smooth;
 
-  padding: 0.5rem;   /* room for outline and shake on edge cards */
+  padding: 0.5rem; /* room for outline and shake on edge cards */
   list-style: none;
 
   display: grid;

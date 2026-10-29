@@ -1,14 +1,15 @@
 export async function fetchStandardCardImages(deckId) {
   try {
-    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`);
+    const response = await fetch(
+      `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`,
+    );
     if (!response.ok) {
       throw new Error(`HTTP Error: Status ${response.status}`);
     }
 
     const cardImages = await response.json();
     return cardImages;
-  } 
-  catch(error) {
+  } catch (error) {
     throw new Error(`${error.message}`, { cause: error });
   }
 }

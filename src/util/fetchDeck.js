@@ -7,8 +7,9 @@ export async function fetchDeck(link) {
 
     const data = await response.json();
     return data;
-  } 
-  catch(error) {
-    throw new Error(`Error retrieving deck: ${error.message}`, { cause: error });
+  } catch (error) {
+    throw new Error(`Error retrieving deck: ${error.message}`, {
+      cause: error,
+    });
   }
 }

@@ -20,9 +20,9 @@ main {
     grid-template-columns: auto minmax(0, 1fr);
     grid-template-rows: 100vh auto;
     grid-template-rows: 100dvh auto;
-    grid-template-areas: 
-    "sidebar main"
-    "footer footer";
+    grid-template-areas:
+      "sidebar main"
+      "footer footer";
 
     .sidebar {
       grid-area: sidebar;
