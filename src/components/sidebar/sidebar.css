@@ -123,7 +123,7 @@
     font-size: smaller;
   }
 
-  @media screen and (width <= 48rem) {
+  @media screen and (width < 48rem) {
     width: 100%;
     position: fixed;
     inset: 0;
@@ -159,7 +159,6 @@
       pointer-events: auto;
       overscroll-behavior: contain; /* panel scrolling never chains to the page */
       overflow-y: auto;             /* panel scrolls itself if content outgrows the screen */
-      pointer-events: auto;
       transform: translateX(0);
       visibility: visible;
     }
@@ -186,7 +185,7 @@
 
 /* Intentionally global: locks page scroll while the mobile sidebar is open.
    Kept here because it depends on the panel's inert state and breakpoint. */
-@media screen and (width < 47.5rem) {
+@media screen and (width < 48rem) {
   html:has(.sidebar-panel:not([inert])) {
     overflow: hidden;
   }

@@ -26,10 +26,9 @@ function CardBack() {
 
 function Title() {
   return (
-    <
-      img src={titleUrl} 
+    <img 
+      src={titleUrl} 
       alt="Concentration"
-      fetchPriority="high"
     />
   )
 }

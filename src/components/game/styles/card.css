@@ -1,15 +1,5 @@
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  99% {
-    opacity: 0.01;
-    visibility: visible;
-  }
-
-  100% {
+  to {
     opacity: 0;
     visibility: hidden;
   }
@@ -54,10 +44,12 @@
     pointer-events: none;
   }
 
-  &:hover {
-    filter: brightness(1.2);
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(1.2);
+    }
   }
-
+  
   &:focus-visible {
     outline-color: white;
   }

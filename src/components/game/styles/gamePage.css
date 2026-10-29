@@ -50,7 +50,6 @@
   gap: var(--gap-between-options);
 }
 
-/* TEMP STYLING FOR TESTING */
 .cards-area {
   width: 100%;
   flex: 1;

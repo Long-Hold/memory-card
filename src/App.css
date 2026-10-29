@@ -3,12 +3,6 @@
   flex-flow: column nowrap;
 }
 
-body {
-  background-color: var(--felt);
-  background-image: var(--felt-texture);
-  background-attachment: fixed;
-}
-
 main {
   flex: 1;
   padding: var(--container-padding);
@@ -20,7 +14,7 @@ main {
 }
 
 /* Larger viewport sizing */
-@media screen and (min-width: 48rem) {
+@media screen and (width >= 48rem) {
   #root {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
