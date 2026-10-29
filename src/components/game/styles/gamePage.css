@@ -23,7 +23,7 @@
   gap: var(--small-items-gap);
 }
 
-.start-game-button {
+.game-control-btn {
   color: white;
   border: none;
   background-color: var(--button-bg);
