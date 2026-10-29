@@ -12,6 +12,11 @@ footer {
   background-color: var(--menu-color);
   padding: var(--container-padding);
   gap: var(--small-items-gap);
+
+  .attributions {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 
 #personal-links-heading {

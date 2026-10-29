@@ -3,10 +3,13 @@ import './footer.css';
 export function Footer() {
   return (
     <footer>
-      <p>
+      <p className='attributions'>
         <small>
           Designed and developed by Matthew Harview.
           Standard playing card images retrieved from <a href='https://deckofcardsapi.com/'>Deck of Cards API</a>.
+        </small>
+        <small>
+          <a href="https://www.flaticon.com/free-icons/suits" title="suits icons">Suits icons created by Georgiana_Lavinia - Flaticon</a>
         </small>
       </p>
 
