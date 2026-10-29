@@ -2,6 +2,11 @@
   text-transform: uppercase;
   text-align: center;
   flex-shrink: 0;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   .status-metrics {
     display: flex;
     flex-flow: row wrap;
