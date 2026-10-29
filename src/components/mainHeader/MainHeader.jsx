@@ -29,6 +29,7 @@ function Title() {
     <
       img src={titleUrl} 
       alt="Concentration"
+      fetchPriority="high"
     />
   )
 }
