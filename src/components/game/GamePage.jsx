@@ -5,15 +5,18 @@ import { Card } from "./components/Card";
 import { GameState } from "./components/GameState";
 import { cardsMatch } from "./util/cardsMatch";
 import { GameOver } from "./components/GameOver";
-import "./styles/gamePage.css";
 import { shuffleArray } from "./util/shuffleArray";
 import { StartScreen } from "./components/StartScreen";
+import { ErrorScreen } from "./components/ErrorScreen";
+
+import "./styles/gamePage.css";
 
 const playingCardsApi = "https://deckofcardsapi.com/api/deck/new/?deck_count=1";
 
 export function GamePage({difficulty}) {
   const [cardImgs, setImgs] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [gameError, setError] = useState(null);
 
   const [stats, setStats] = useState({winStreak: 0, remainingTurns: difficulty});
 
@@ -24,28 +27,32 @@ export function GamePage({difficulty}) {
 
   // Fetches cards from API and causes a re-render to display them
   const initializeCards = async (cardStyle) => {
-    const deck = await fetchDeck(cardStyle);
-    const { cards } = await fetchStandardCardImages(deck.deck_id);
+    setError(null);
 
+    try {
+      const deck = await fetchDeck(cardStyle);
+      const { cards } = await fetchStandardCardImages('f');
 
-    // Makes the array flat
-    const cleanedCards = cards.map(({images, ...rest}) => ({
-      ...rest,
-      image: images.png,
-    }));
+      const cleanedCards = cards.map(({ images, ...rest }) => ({
+        ...rest,
+        image: images.png,
+      }));
 
-    setImgs(shuffleArray(cleanedCards));
+      setImgs(shuffleArray(cleanedCards));
 
-    await Promise.all(
-      cleanedCards.map(({ image }) => {
-        const img = new Image();
-        img.src = image;
-        return img.decode().catch(() => {}); // ignore failures, don't block the game
-      })
-    );
-    
-    setLoading(false);
-  }
+      await Promise.all(
+        cleanedCards.map(({ image }) => {
+          const img = new Image();
+          img.src = image;
+          return img.decode().catch(() => {});
+        })
+      );
+
+      setLoading(false);
+    } catch (error) {
+      setError(error.message || "Failed to load cards.");
+    }
+  };
 
   const handleCardClick = (clickedCard) => {
     // A full pair means a new turn is starting, so the clicked card becomes the first pick.
@@ -80,6 +87,15 @@ export function GamePage({difficulty}) {
 
     setMatchedCardIds(new Set());
     setCurrentPair([]);
+  }
+
+  if (gameError) {
+    return (
+      <ErrorScreen
+        message={gameError}
+        retry={() => initializeCards(playingCardsApi)}
+      />
+    );
   }
 
   if (loading) {
