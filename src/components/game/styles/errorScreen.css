@@ -1,0 +1,36 @@
+.error-screen {
+  #error-screen-heading {
+    color: var(--card-red);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .error-message {
+    font-size: larger;
+  }
+
+  .refresh-page-btn {
+    color: var(--very-dark-gray);
+    background-color: var(--selected-gold);
+    background-image: none;
+    box-shadow: none;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: var(--small-items-gap);
+    justify-content: space-between;
+
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    .button-icon {
+      height: rem;
+    }
+
+    &:hover {
+      background-color: var(--card-red);
+      color: white;
+    }
+  }
+}
