@@ -9,6 +9,6 @@ export async function fetchStandardCardImages(deckId) {
     return cardImages;
   } 
   catch(error) {
-    throw new Error(`Fetch Error in fetchCardImages! ${error.message}`, { cause: error });
+    throw new Error(`${error.message}`, { cause: error });
   }
 }

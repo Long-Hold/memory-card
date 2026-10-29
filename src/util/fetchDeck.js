@@ -9,6 +9,6 @@ export async function fetchDeck(link) {
     return data;
   } 
   catch(error) {
-    throw new Error(`Failed to fetch deck: ${error.message}`, { cause: error });
+    throw new Error(`Error retrieving deck: ${error.message}`, { cause: error });
   }
 }
