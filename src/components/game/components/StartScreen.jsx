@@ -21,7 +21,7 @@ export function StartScreen({loadCards}) {
       <button
       ref={buttonRef}
       type="button"
-      className="start-game-button"
+      className="game-control-btn start-game-button"
       onClick={loadCards}
       >
         Start Game
