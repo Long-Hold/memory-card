@@ -104,9 +104,7 @@ export function GamePage({difficulty}) {
     )
   }
 
-  // cardImg's relies on an async API call, so it could read 0 at this point which would cause
-  // an instance win.
-  const hasWon = (cardImgs.length > 0 && matchedCardIds.size === cardImgs?.length);
+  const hasWon = (cardImgs.length > 0 && matchedCardIds.size === cardImgs.length);
   const isOutOfTurns = stats.remainingTurns <= 0;
   if (hasWon || isOutOfTurns) {
     return (
@@ -131,7 +129,6 @@ export function GamePage({difficulty}) {
           return (
             <li key={card.code}> 
               <Card 
-                cardId={card.code}
                 index={index}
                 imageSrc={card.image}
                 suit={card.suit}
