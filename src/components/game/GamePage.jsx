@@ -31,7 +31,7 @@ export function GamePage({difficulty}) {
 
     try {
       const deck = await fetchDeck(cardStyle);
-      const { cards } = await fetchStandardCardImages('f');
+      const { cards } = await fetchStandardCardImages(deck.deck_id);
 
       const cleanedCards = cards.map(({ images, ...rest }) => ({
         ...rest,
